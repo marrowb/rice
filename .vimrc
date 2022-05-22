@@ -1,5 +1,5 @@
 " Brandon's ~/.vimrc
-let mapleader = "\<Space>"
+map <Space> <Leader>
 
 "easy .vimrc reloading
 " Split edit your vimrc. Type space, v, r in sequence to trigger
@@ -7,12 +7,29 @@ nmap <leader>vr :sp $MYVIMRC<cr>
 " Source (reload) your vimrc. Type space, s, o in sequence to trigger
 nmap <leader>so :source $MYVIMRC<cr>
 
+" Switch back to terminal
+nmap <leader>t :stop<cr>
+
+" Open netrw at current file's directory
+nmap <leader>f :Explore<CR>
+
+" Open netrw at current working directory
+nmap <leader><s-f> :edit.<CR>
+let g:netrw_altv = 1
+let g:netrw_dirhistmax = 0
+
+" Vim Slime Tmux Configuration
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+
 " Colorscheme
 syntax enable           " enable syntax processing
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+" Highlighting off
+:noh
 " Spaces & Tabs 
 set tabstop=4           " 4 space tab
 set expandtab           " use spaces for tabs
@@ -121,6 +138,14 @@ Plug 'christoomey/vim-tmux-navigator'
 
 "Linting
 Plug 'dense-analysis/ale'
+
+"Org-mode & Dependencies
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-speeddating'
+
+" Vim Slime - send lines to ipython
+Plug 'jpalardy/vim-slime'
+
 call plug#end()
 
 " Live Latex Settings
